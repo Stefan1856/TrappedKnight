@@ -1,3 +1,5 @@
+import java.awt.Color;
+
 public class TrappedKnight{
   public static void main(String args[]){
     int n  =2;   int m  = 1;
@@ -5,19 +7,19 @@ public class TrappedKnight{
     int [] pos = {sx,sy,Feld.wert(sx,sy)};                  //Startposition
     int[] Besucht = {Feld.wert(sx,sy)};
 
-
-      StdDraw.setCanvasSize((int)(Math.sqrt(2)*1000),1000); //Bild einrichten
-      StdDraw.setXscale(-30,30+(Math.sqrt(2)*60-60));
-      StdDraw.setYscale(-30,30);
-      T.Koordinatensystem();
-      StdDraw.setPenColor(StdDraw.BLACK);
-      T.T("Startwert  ",sx,sy,31,27);                             //gebe Startwert an
-      T.T("Bewegung",n,m,31,26);                                   //gebe Bewegung an
-      StdDraw.setPenColor(StdDraw.BLUE);
-      StdDraw.filledCircle(sx,sy,0.3);                      //markiere Startpunkt
-      StdDraw.setPenColor(StdDraw.BLACK);
-      StdDraw.textLeft(31,25,"Schritte    :");
-      StdDraw.textLeft(31,24,"Endwert   :");
+    StdDraw.setCanvasSize((int)(Math.sqrt(2)*1000),1000); //Bild einrichten
+    StdDraw.setXscale(-30,30+(Math.sqrt(2)*60-60));
+    StdDraw.setYscale(-30,30);
+    T.Koordinatensystem();
+	StdDraw.setPenRadius(0.005);
+    StdDraw.setPenColor(StdDraw.BLACK);
+    T.T("Startwert  ",sx,sy,31,27);                             //gebe Startwert an
+    T.T("Bewegung",n,m,31,26);                                   //gebe Bewegung an
+    StdDraw.setPenColor(StdDraw.BLUE);
+    StdDraw.filledCircle(sx,sy,0.3);                      //markiere Startpunkt
+    StdDraw.setPenColor(StdDraw.BLACK);
+    StdDraw.textLeft(31,25,"Schritte    :");
+    StdDraw.textLeft(31,24,"Endwert   :");
     int i = 1;
     while(i<3000){
 //T.A(Besucht);
@@ -60,6 +62,12 @@ public class TrappedKnight{
             nextpos[u]=sortpos[j][u];          //das kleinste mögliche unbesuchte Feld wird das nächste Feld
           }
           if(nextpos[0]<30 && pos[0]<30){
+			// verändere die linien-farbe nach dem HSB Farbmodell, sodass jede Farbe des angenommen wird
+			StdDraw.setPenColor(Color.getHSBColor(
+				(float) ((i%100)*0.01),
+				(float) 1,
+				(float) 0.5)
+			);
             StdDraw.line(pos[0], pos[1], nextpos[0], nextpos[1]);  //zeichne Linie von dem aktuellen Feld zum Nächsten
           }
           Besucht = Wert.add(nextpos[2],Besucht);                //markiere das Feld als besucht
@@ -68,7 +76,7 @@ public class TrappedKnight{
           }
           i++;
           StdDraw.setPenColor(StdDraw.WHITE);
-          StdDraw.filledrect(38.2,24.9,1,2);
+          StdDraw.filledRectangle(38.2,24.9,1,2);
           StdDraw.setPenColor(StdDraw.BLACK);
           String I = String.valueOf(i);
           String J = String.valueOf(pos[2]);
