@@ -11,7 +11,7 @@ public class TrappedKnight{
     StdDraw.setXscale(-30,30+(Math.sqrt(2)*60-60));
     StdDraw.setYscale(-30,30);
     T.Koordinatensystem();
-	StdDraw.setPenRadius(0.0025);
+	StdDraw.setPenRadius(0.005);
     StdDraw.setPenColor(StdDraw.BLACK);
     T.T("Startwert  ",sx,sy,31,27);                             //gebe Startwert an
     T.T("Bewegung",n,m,31,26);                                   //gebe Bewegung an
